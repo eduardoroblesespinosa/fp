@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <!-- Styles -->
+  <style>
+    #chartdiv {
+      width: 100%;
+      height: 500px;
+    }
+  </style>
+  <!-- Resources -->
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <!-- Chart code -->
+  <script>
+am4internal_webpackJsonp(["f6f5"],{JjGr:function(e,t,c){"use strict";Object.defineProperty(t,"__esModule",{value:!0});
+    var s=c("aCit"),i=c("8ZqG"),n=function(e){Object(s.b)(e,"ColorSet")&&(e.list=[Object(i.c)("#213047"),Object(i.c)("#ff0000"),Object(i.c)("#d5433d"),Object(i.c)("#f05440")],e.reuse=!1,e.stepOptions={lightness:.05,hue:0},e.passOptions={})};window.am4themes_dataviz=n}},["JjGr"]);
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_dataviz);
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+  var iconPath = "M18.13,65.6V80.48L28.5,82.79V66.09M95,58V92.69L71.69,97.56,4,80.69V58L71.75,58ZM54,62.47a1,1,0,0,0,1,1l5.25.13a1,1,0,1,0,0-2L55,61.5A1,1,0,0,0,54,62.47Zm-19-.63a.78.78,0,0,0,.81.75l4.3.06a.74.74,0,1,0,0-1.48l-4.3-.06A.78.78,0,0,0,35,61.84ZM20.93,61.5a.6.6,0,0,0,.59.62l3.17.09a.6.6,0,0,0,0-1.21l-3.17-.09A.6.6,0,0,0,20.93,61.5Zm-11-.18a.41.41,0,0,0,.41.41h2.14a.41.41,0,0,0,0-.81H10.35A.41.41,0,0,0,9.94,61.32ZM70.5,65.9,5,62.91V79.55L70.5,94Zm23,23.1a1,1,0,0,0-1.15-.82L75.33,91V60.25a1,1,0,0,0-2,0v33.1l19.33-3.19A1,1,0,0,0,93.49,89Zm-25-20.88-19.69-1v20L68.5,91.44Zm-40-2-10.37-.51V80.4L28.5,82.68ZM46.81,67,30.5,66.24V83.11l16.31,3.45ZM16.13,65.53,7,65.07V77.94l9.13,2ZM95,10V29.71l-90,3V17.09L71.75,5.56ZM9.88,21.86c0-.38-.45-.68-1-.68s-1,.31-1,.68v3.59c0,.38.45.68,1,.68s1-.31,1-.68Zm10.88-1.38c0-.4-.45-.73-1-.73s-1,.33-1,.73v3.85c0,.4.45.73,1,.73s1-.33,1-.73Zm12.72-1.6a1,1,0,0,0-2,0v4.52a1,1,0,0,0,2,0Zm18.28-2.45a1,1,0,0,0-2,0v5.25a1,1,0,1,0,2,0Zm23.58,8.41V9l17,3.16a1,1,0,0,0,.37-2L73.33,6.55V25.67a.93.93,0,0,0,0,.09,1,1,0,0,0,.87,1l17.94,2.06h.12a1,1,0,0,0,.11-2Z"
+
+var chart = am4core.create("chartdiv", am4charts.SlicedChart);
+chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+chart.paddingLeft = 150;
+
+chart.data = [{
+    "name": "Otros",
+    "value": 19,
+    "disabled":true
+}, {
+    "name": "MCM",
+    "value": 81
+}];
+
+var series = chart.series.push(new am4charts.PictorialStackedSeries());
+series.dataFields.value = "value";
+series.dataFields.category = "name";
+series.alignLabels = true;
+// this makes only A label to be visible
+series.labels.template.propertyFields.disabled = "disabled";
+series.ticks.template.propertyFields.disabled = "disabled";
+
+
+series.maskSprite.path = iconPath;
+series.ticks.template.locationX = 1;
+series.ticks.template.locationY = 0;
+
+series.labelsContainer.width = 100;
+
+chart.legend = new am4charts.Legend();
+chart.legend.position = "top";
+chart.legend.paddingRight = 160;
+chart.legend.paddingBottom = 40;
+let marker = chart.legend.markers.template.children.getIndex(0);
+chart.legend.markers.template.width = 40;
+chart.legend.markers.template.height = 40;
+marker.cornerRadius(20,20,20,20);
+
+}); // end am4core.ready()
+  </script>
+</head>
+<body>
+  <h2 style="text-align:center">Cantidad de madera usada en MCM</h2>
+
+  <!-- HTML -->
+  <div id="chartdiv"></div>
+
+</body>
+</html>
